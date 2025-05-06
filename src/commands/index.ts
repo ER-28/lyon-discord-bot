@@ -1,12 +1,14 @@
 import type { Message } from "discord.js";
 import { handleHelloCommand } from "./hello.js";
 import { handlePingCommand } from "./ping.js";
+import { handleRulesCommand } from "./rules.js";
 
 const COMMANDS: {
   [key: string]: (message: Message) => Promise<void>;
 } = {
   "!ping": handlePingCommand,
   "!hello": handleHelloCommand,
+  "!rules": handleRulesCommand,
 };
 
 export async function handleCommands(message: Message) {
