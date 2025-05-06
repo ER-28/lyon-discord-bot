@@ -64,7 +64,7 @@ async function handleApprovalReaction(
 
     // Add member role
     const memberRole = guild.roles.cache.find(
-      (role) => role.name === config.roles.member,
+      (role) => role.id === config.roles.member,
     );
     if (memberRole) {
       await newMember.roles.add(memberRole);
@@ -74,7 +74,7 @@ async function handleApprovalReaction(
 
     // Post to presentation channel
     const presentationChannel = guild.channels.cache.find(
-      (ch) => ch.name === config.channels.presentation,
+      (ch) => ch.id === config.channels.presentation,
     );
     if (presentationChannel && presentationChannel.type === 0) {
       // Get the introduction message
