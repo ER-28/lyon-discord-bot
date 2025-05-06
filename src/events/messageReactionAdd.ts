@@ -5,6 +5,8 @@ import type {
   User,
 } from "discord.js";
 import { config } from "../config/config.js";
+import { presentationChannelCloseMessage } from "../messages/presentation-channel-close.js";
+import { presentationMessages } from "../messages/presentation.js";
 import {
   type WelcomeChannelData,
   getWelcomeChannel,
@@ -79,8 +81,11 @@ async function handleApprovalReaction(
     if (presentationChannel && presentationChannel.type === 0) {
       // Get the introduction message
       const introMessage = reaction.message.content;
+
+      if (!introMessage) return;
+
       await presentationChannel.send(
-        `New member approved: ${newMember.user.username} - ${introMessage}`,
+        presentationMessages(newMember.user.id, introMessage),
       );
     } else {
       console.error("Presentation channel not found");
@@ -90,7 +95,7 @@ async function handleApprovalReaction(
     const channel = reaction.message.channel;
     if (channel && channel.type === 0) {
       await channel.send(
-        `Congratulations ${newMember.user.username}! You've been approved by ${adminMember.user.username} and given the ${config.roles.member} role.`,
+        presentationChannelCloseMessage(newMember.user.username),
       );
     }
 

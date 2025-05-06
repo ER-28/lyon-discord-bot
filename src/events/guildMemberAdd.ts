@@ -1,5 +1,6 @@
 import { type GuildMember, PermissionFlagsBits } from "discord.js";
 import { config } from "../config/config.js";
+import { presentationChannelWelcomeMessage } from "../messages/presentation-channel-welcome.js";
 import { addWelcomeChannel } from "../utils/welcomeManager.js";
 
 export async function handleGuildMemberAdd(member: GuildMember) {
@@ -29,7 +30,7 @@ export async function handleGuildMemberAdd(member: GuildMember) {
 
     // Send welcome message to the new channel
     const welcomeMessage = await channel.send(
-      `Welcome to the server, ${member.user.username}! Please introduce yourself, and an admin will approve your membership.`,
+      presentationChannelWelcomeMessage(member.user.username),
     );
 
     // Store channel info in welcome manager
