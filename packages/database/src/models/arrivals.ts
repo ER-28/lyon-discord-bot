@@ -1,34 +1,41 @@
-import { model, Schema } from "mongoose";
+import { Schema, model } from "mongoose";
 
 export interface IArrival {
-  member_id: string;
   status: "pending" | "accepted" | "refused";
-  channel_id: string;
-  presentation: string;
-  message_id: string;
+
+  member_id: string;
+  channel_id?: string | null;
+  message_id?: string | null;
+
+  presentation?: string | null;
+  presentation_message_id?: string | null;
 }
 
 export const arrivalSchema = new Schema<IArrival>({
-  member_id: {
-    type: String,
-    required: true,
-  },
   status: {
     type: String,
     enum: ["pending", "accepted", "refused"],
     default: "pending",
   },
-  channel_id: {
+  member_id: {
     type: String,
     required: true,
   },
-  presentation: {
+  channel_id: {
     type: String,
-    required: true,
+    required: false,
   },
   message_id: {
     type: String,
-    required: true,
+    required: false,
+  },
+  presentation: {
+    type: String,
+    required: false,
+  },
+  presentation_message_id: {
+    type: String,
+    required: false,
   },
 });
 

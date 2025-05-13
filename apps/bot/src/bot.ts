@@ -7,7 +7,7 @@ import { registerEvents } from "./events/index.js";
 // Set up client with required intents
 export async function initializeBot() {
   // connect to the database
-  await connectDatabase("mongodb://root:example@localhost:27017");
+  await connectDatabase(config.mongoUri);
 
   const client = new Client({
     intents: botIntents,

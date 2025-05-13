@@ -4,7 +4,7 @@ import { handlePingCommand } from "./ping.js";
 import { handleRulesCommand } from "./rules.js";
 
 const COMMANDS: {
-  [key: string]: (message: Message) => Promise<void>;
+  [key: string]: (message: Message) => Promise<void> | void;
 } = {
   "!ping": handlePingCommand,
   "!hello": handleHelloCommand,
