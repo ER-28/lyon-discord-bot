@@ -1,34 +1,20 @@
 {
-  "name": "discord-bot",
-  "version": "1.0.0",
-  "description": "A Discord bot built with Discord.js",
-  "main": "dist/index.js",
-  "type": "module",
+  "name": "my-turborepo",
+  "private": true,
   "scripts": {
-    "build": "tsc",
-    "start": "node dist/index.js",
-    "dev": "NODE_OPTIONS=\"--loader ts-node/esm\" node --watch src/index.ts",
-    "watch": "tsc -w",
-    "lint": "biome check",
-    "lint:fix": "biome check --fix"
-  },
-  "keywords": [
-    "discord",
-    "bot",
-    "discord.js"
-  ],
-  "author": "",
-  "license": "MIT",
-  "dependencies": {
-    "discord.js": "^14.14.1",
-    "dotenv": "^16.5.0",
-    "zod": "^3.24.4"
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "check-types": "turbo run check-types"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.9.4",
-    "@types/node": "^20.10.0",
-    "ts-node": "^10.9.2",
-    "tslib": "^2.6.2",
-    "typescript": "^5.3.3"
+    "prettier": "^3.5.3",
+    "turbo": "^2.5.3",
+    "typescript": "5.8.2"
+  },
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=18"
   }
 }

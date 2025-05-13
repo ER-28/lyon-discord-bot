@@ -1,10 +1,14 @@
-import { Client, GatewayIntentBits } from "discord.js";
+import { connectDatabase } from "@repo/database/utils/connect";
+import { Client } from "discord.js";
 import { config } from "./config/config.js";
 import { botIntents } from "./config/intent.js";
 import { registerEvents } from "./events/index.js";
 
 // Set up client with required intents
-export function initializeBot() {
+export async function initializeBot() {
+  // connect to the database
+  await connectDatabase("mongodb://root:example@localhost:27017");
+
   const client = new Client({
     intents: botIntents,
   });
@@ -13,15 +17,7 @@ export function initializeBot() {
   registerEvents(client);
 
   // Login with token from config
-  client
-    .login(config.token)
-    .then(() => {
-      console.log("Start successfully!");
-    })
-    .catch((err) => {
-      console.error("Failed to log in:", err);
-      throw err;
-    });
+  await client.login(config.token);
 
   return client;
 }
