@@ -1,10 +1,12 @@
 {
   "$schema": "https://turborepo.com/schema.json",
   "ui": "tui",
+  "globalDependencies": [".env"],
+  "globalEnv": ["MONGO_URI", "TOKEN"],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "inputs": ["$TURBO_DEFAULT$", ".env"],
       "outputs": [".next/**", "!.next/cache/**", "dist/**", "!.turbo/**"]
     },
     "lint": {
@@ -14,12 +16,15 @@
       "dependsOn": ["^check-types"]
     },
     "start": {
+      "inputs": [".env"],
       "cache": false,
       "persistent": true
     },
     "dev": {
+      "inputs": [".env"],
+      "env": ["TOKEN", "MONGO_URI"],
       "cache": false,
-      "persistent": true
+      "persistent": false
     }
   }
 }
