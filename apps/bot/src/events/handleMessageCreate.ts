@@ -1,6 +1,6 @@
 import type { Message, OmitPartialGroupDMChannel } from "discord.js";
 import { handleCommands } from "../commands/index.js";
-import { Arrivals } from "../services/arrivals.js";
+import { ArrivalsService } from "../services/arrivalsService.js";
 
 export async function handleMessageCreate(
   message: OmitPartialGroupDMChannel<Message>,
@@ -12,5 +12,5 @@ export async function handleMessageCreate(
     return;
   }
 
-  await new Arrivals().handleMessageCreate(message);
+  await new ArrivalsService().handleMessageCreate(message);
 }

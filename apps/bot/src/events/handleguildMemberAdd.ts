@@ -1,6 +1,6 @@
 import type { GuildMember } from "discord.js";
-import { Arrivals } from "../services/arrivals.js";
+import { ArrivalsService } from "../services/arrivalsService.js";
 
 export async function handleGuildMemberAdd(member: GuildMember) {
-  await new Arrivals().handleGuildMemberAdd(member);
+  await new ArrivalsService().handleGuildMemberAdd(member);
 }

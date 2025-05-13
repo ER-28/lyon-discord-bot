@@ -4,15 +4,7 @@ import type {
   PartialUser,
   User,
 } from "discord.js";
-import { config } from "../config/config.js";
-import { presentationChannelCloseMessage } from "../messages/presentation-channel-close.js";
-import { presentationMessages } from "../messages/presentation.js";
-import { Arrivals } from "../services/arrivals.js";
-import {
-  type WelcomeChannelData,
-  getWelcomeChannel,
-  removeWelcomeChannel,
-} from "../utils/welcomeManager.js";
+import { ArrivalsService } from "../services/arrivalsService.js";
 
 export async function handleMessageReactionAdd(
   reaction: MessageReaction | PartialMessageReaction,
@@ -30,6 +22,6 @@ export async function handleMessageReactionAdd(
   }
 
   if (reaction.emoji.name === "✅") {
-    await new Arrivals().handleApprovalReaction(reaction, user);
+    await new ArrivalsService().handleApprovalReaction(reaction, user);
   }
 }
